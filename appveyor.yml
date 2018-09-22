@@ -37,6 +37,10 @@ environment:
       PYTHON_ARCH: "x86_64"
     - PY_VER: 3.6
       PYTHON_ARCH: "x86"
+    - PY_VER: 3.7
+      PYTHON_ARCH: "x86_64"
+    - PY_VER: 3.7
+      PYTHON_ARCH: "x86"
 
 platform:
     - x64
