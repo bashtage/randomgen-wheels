@@ -5,13 +5,13 @@ os: Visual Studio 2015
 
 environment:
   global:
-    BUILD_COMMIT: v1.14.4 # master
+    BUILD_COMMIT: v1.15.0 # master
     TESTPYPI_UPLOAD: "false" # "false"
     PYPI_UPLOAD: "false" # "true"
-    CONDA_BUILD: "true"
-    CONDA_UPLOAD: "true"
+    CONDA_BUILD: "false"
+    CONDA_UPLOAD: "false"
     PACKAGE_NAME: randomgen
-    CONDA_NUMPY_VERSION: 1.14
+    CONDA_NUMPY_VERSION: 1.15
   TESTPYPI_USERNAME:
     secure: 9D67F9Bcy8PITwg1cezOgw==
   TESTPYPI_PASSWORD:
