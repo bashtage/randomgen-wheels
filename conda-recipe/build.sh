@@ -1,11 +1,14 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-# From https://raw.githubusercontent.com/conda-forge/toolchain-feedstock/master/recipe/activate.sh
 if [ "$(uname)" == "Darwin" ]
 then
     # for Mac OSX
     export CC=clang
     export CXX=clang++
+    export FC=gfortran
+    export F77=$FC
+    export F90=$FC
+    export F95=$FC
     export MACOSX_VERSION_MIN="10.9"
     export MACOSX_DEPLOYMENT_TARGET="${MACOSX_VERSION_MIN}"
     export CMAKE_OSX_DEPLOYMENT_TARGET="${MACOSX_VERSION_MIN}"
@@ -22,6 +25,10 @@ then
     # for Linux
     export CC=gcc
     export CXX=g++
+    export FC=gfortran
+    export F77=$FC
+    export F90=$FC
+    export F95=$FC
     export CFLAGS="${CFLAGS}"
     # Boost wants to enable `float128` support on Linux by default.
     # However, we don't install `libquadmath` so it will fail to find
@@ -45,6 +52,8 @@ export CPPFLAGS="${CPPFLAGS} -I${PREFIX}/include"
 export LDFLAGS="${LDFLAGS} -L${PREFIX}/lib"
 export CFLAGS="${CFLAGS} -m${ARCH}"
 export CXXFLAGS="${CXXFLAGS} -m${ARCH}"
+export CFLAGS="${CFLAGS} -fPIC"
+export CXXFLAGS="${CXXFLAGS} -fPIC"
 
 # Python command to install the script.
 $PYTHON setup.py install --single-version-externally-managed --record=record.txt

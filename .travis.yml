@@ -2,18 +2,18 @@ env:
   global:
       # Set these values
       - BUILD_COMMIT="v1.15.0" # "master"
-      - TESTPYPI_UPLOAD=false # false
+      - TESTPYPI_UPLOAD=true # false
       - PYPI_UPLOAD=false # true
-      - CONDA_BUILD=false
-      - CONDA_UPLOAD=false
-      - SDIST=false
+      - CONDA_BUILD=true
+      - CONDA_UPLOAD=true
+      - SDIST=true
       # These values should not usually change
       - REPO_DIR="randomgen"
       - PLAT=x86_64
       - UNICODE_WIDTH=32
       - BUILD_DEPENDS="Cython numpy"
       - TEST_DEPENDS="numpy pytest nose"
-      - CONDA_NUMPY_VERSION=1.14
+      - CONDA_NUMPY_VERSION=1.15
 
 
 language: python
