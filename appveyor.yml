@@ -5,10 +5,10 @@ os: Visual Studio 2015
 
 environment:
   global:
-    BUILD_COMMIT: v1.15.0 # master
+    BUILD_COMMIT: v1.15.1 # master
     TESTPYPI_UPLOAD: "false" # "false"
-    PYPI_UPLOAD: "true" # "true"
-    CONDA_BUILD: "false"
+    PYPI_UPLOAD: "false" # "true"
+    CONDA_BUILD: "true"
     CONDA_UPLOAD: "false"
     PACKAGE_NAME: randomgen
     CONDA_NUMPY_VERSION: 1.15
