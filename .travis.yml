@@ -3,7 +3,7 @@ env:
       # Set these values
       - BUILD_COMMIT="v1.16.1" # "master"
       - TESTPYPI_UPLOAD=false # false
-      - PYPI_UPLOAD=true # true
+      - PYPI_UPLOAD=false # true
       - CONDA_BUILD=false
       - CONDA_UPLOAD=false
       - SDIST=false
