@@ -1,24 +1,38 @@
+{% set name = "randomgen" %}
+{% set version = "v1.16.2" %}
+{% set sha = "e8370006b4fe4479b1df9d68468da08c60e174751be9c90d78e06c36efb44cb6" %}
 package:
-    name: randomgen
-    version: v1.16.1
+    name: {{ name|lower }}
+    version:  {{ version }}
+
 source:
-    version: v1.16.1
-    git_url: 'https://github.com/bashtage/randomgen.git'
+    version: {{ version }}
+    url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+    sha256: {{ sha }}
+
 build:
     number: 0
 requirements:
     build:
+        - {{ compiler('c') }}
+    host:
         - python
-        - setuptools
+        - pip
         - cython
-        - 'numpy x.x'
+        - setuptools
+        - numpy
+        - wheel
     run:
         - python
-        - 'numpy x.x'
+        - {{ pin_compatible('numpy') }}
+
 test:
     requires:
         - pytest
         - nose
+
 about:
     home: 'https://github.com/bashtage/randomgen'
-    license: NSCA
+    license: NSCA/BSD
+    license_file: LICENSE.md
+    summary: Replacement random number generator for NumPy

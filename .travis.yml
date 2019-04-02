@@ -1,8 +1,8 @@
 env:
   global:
       # Set these values
-      - BUILD_COMMIT="master" # "v1.16.1"
-      - TESTPYPI_UPLOAD=false # false
+      - BUILD_COMMIT="v1.16.2" # "v1.16.1"
+      - TESTPYPI_UPLOAD=true # false
       - PYPI_UPLOAD=false # true
       - CONDA_BUILD=false
       - CONDA_UPLOAD=false
