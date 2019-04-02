@@ -1,8 +1,13 @@
 skip_tags: true
 clone_depth: 50
 
+# We always use a 64-bit machine, but can build x86 distributions
+# with the PYTHON_ARCH variable.
 platform: x64
 os: Visual Studio 2015
+
+matrix:
+    fast_finish: false
 
 environment:
   global:
@@ -29,22 +34,23 @@ environment:
     secure: 36nPiNN0128SGPNp1hya5eIJUDBCcKV1okGuHTfwdvmgCQohx8i35hFmdjQl0WHf
 
   matrix:
-    - PY_VER: 3.5
+    - PY_VER: "3.7"
       PYTHON_ARCH: "x86_64"
-      CONDA_NUMPY_VERSION: 1.15
-    - PY_VER: 3.5
+    - PY_VER: "3.7"
       PYTHON_ARCH: "x86"
-      CONDA_NUMPY_VERSION: 1.15
-    - PY_VER: 3.6
+    - PY_VER: "3.6"
       PYTHON_ARCH: "x86_64"
-    - PY_VER: 3.6
+    - PY_VER: "3.6"
       PYTHON_ARCH: "x86"
-    - PY_VER: 3.7
+    - PY_VER: "3.5"
       PYTHON_ARCH: "x86_64"
-    - PY_VER: 3.7
+      CONDA_NUMPY_VERSION: "1.15"
+    - PY_VER: "3.5"
       PYTHON_ARCH: "x86"
+      CONDA_NUMPY_VERSION: "1.15"
 
-build_script:
+
+install:
   - git submodule update --init --recursive
   - ps: Start-FileDownload "https://repo.continuum.io/miniconda/Miniconda3-latest-Windows-$env:PYTHON_ARCH.exe" C:\Miniconda.exe; echo "Finished downloading miniconda"
   - cmd: C:\Miniconda.exe /S /D=C:\Py
@@ -53,19 +59,22 @@ build_script:
   - conda config --set always_yes yes
   - conda update conda --quiet
   - conda install numpy>=MIN_NUMPY_VER
-  - conda create -n randomgen-build python=%PY_VER% numpy cython nose pytest wheel --quiet
+  - call build-conda.bat
+  - conda create -n randomgen-build python=%PY_VER% numpy>=%MIN_NUMPY_VER% cython nose pytest wheel
   - conda activate randomgen-build
   - python -m pip install -U pip
   - pip install %PIP_PACKAGES% --upgrade
   - set "WHEELBUILDER_DIR=%cd%"
 
-test_script:
+build_script:
   - cd randomgen
   - git checkout %BUILD_COMMIT%
   - python setup.py bdist_wheel
   - set "REPO_DIR=%cd%"
   - cd ..
 
+test_script:
+  # install from wheel
   - pip install --pre --no-index --find-links %REPO_DIR%\dist\ %PACKAGE_NAME%
 
   - mkdir _for_testing
@@ -77,4 +86,3 @@ on_success:
   - cd %WHEELBUILDER_DIR%\
   - pip install twine
   - call twine-upload.bat
-  - call build-conda.bat
