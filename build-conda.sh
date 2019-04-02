@@ -1,18 +1,20 @@
 #!/usr/bin/env bash
 
-if [[ ${PLAT} == "x86_64" && ${UNICODE_WIDTH} == "32" && ${CONDA_BUILD} == true ]]; then
+echo "Inside build-conda.sh"
+
+if [[ ${PLAT} == "x86_64" && ${UNICODE_WIDTH} == "32" && ${CONDA_BUILD} == true ]] || [[ ${TRAVIS_OS_NAME} == "osx" ]]; then
     if [[ ${TRAVIS_OS_NAME} == "osx" ]]; then
-        wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda3.sh;
+        wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda3.sh -nv;
     fi
     if [[ ${TRAVIS_OS_NAME} == "linux" ]]; then
-        wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda3.sh;
+        wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda3.sh -nv;
     fi
     chmod +x miniconda3.sh
     ./miniconda3.sh -b
     export PATH=${HOME}/miniconda3/bin:$PATH
     conda config --set always_yes true
     conda update --all --quiet
-    conda install conda-build anaconda-client
+    conda install conda-build anaconda-client conda-verify
     echo cd ${TRAVIS_BUILD_DIR}
     cd ${TRAVIS_BUILD_DIR}
     if [[ ${CONDA_UPLOAD} == true ]]; then

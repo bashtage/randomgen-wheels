@@ -1,7 +1,7 @@
 env:
   global:
       # Set these values
-      - BUILD_COMMIT="v1.16.1" # "master"
+      - BUILD_COMMIT="master" # "v1.16.1"
       - TESTPYPI_UPLOAD=false # false
       - PYPI_UPLOAD=false # true
       - CONDA_BUILD=false
@@ -13,7 +13,7 @@ env:
       - UNICODE_WIDTH=32
       - BUILD_DEPENDS="Cython numpy"
       - TEST_DEPENDS="numpy pytest nose"
-      - CONDA_NUMPY_VERSION=1.15
+      - CONDA_NUMPY_VERSION=1.16
 
 language: python
 python: 3.6
@@ -25,23 +25,8 @@ matrix:
   include:
     - os: linux
       env:
-        - MB_PYTHON_VERSION=2.7
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=2.7
-        - UNICODE_WIDTH=16
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=2.7
-        - PLAT=i686
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=2.7
-        - PLAT=i686
-        - UNICODE_WIDTH=16
-    - os: linux
-      env:
         - MB_PYTHON_VERSION=3.5
+        - CONDA_NUMPY_VERSION=1.15
     - os: linux
       env:
         - MB_PYTHON_VERSION=3.5
@@ -64,11 +49,8 @@ matrix:
     - os: osx
       language: generic
       env:
-        - MB_PYTHON_VERSION=2.7
-    - os: osx
-      language: generic
-      env:
         - MB_PYTHON_VERSION=3.5
+        - CONDA_NUMPY_VERSION=1.15
     - os: osx
       language: generic
       env:
@@ -94,5 +76,5 @@ script:
     - source build-sdist.sh
 
 after_success:
-    # Upload wheels to Rackspace container
+    # Upload wheels/sdist to PyPI
     - source twine-upload.sh

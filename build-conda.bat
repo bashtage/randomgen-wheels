@@ -7,7 +7,7 @@ if "%CONDA_BUILD%" == "true" (
     conda install -c conda-forge vs2008_express_vc_python_patch
     call setup_x64
 
-    conda install conda-build anaconda-client
+    conda install conda-build anaconda-client conda-verify
     if "%CONDA_UPLOAD%" == "true" (
         conda config --set anaconda_upload yes
     ) else (
