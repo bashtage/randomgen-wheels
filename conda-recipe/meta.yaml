@@ -19,9 +19,7 @@ requirements:
         - python
         - pip
         - cython
-        - setuptools
         - numpy
-        - wheel
     run:
         - python
         - {{ pin_compatible('numpy') }}
