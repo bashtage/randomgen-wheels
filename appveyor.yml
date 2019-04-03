@@ -11,7 +11,7 @@ matrix:
 
 environment:
   global:
-    BUILD_COMMIT: "v1.16.2" # "master" # v1.16.1
+    BUILD_COMMIT: "v1.16.3" # "master" # v1.16.1
     TESTPYPI_UPLOAD: "false" # "false"
     PYPI_UPLOAD: "true" # "true"
     CONDA_BUILD: "true"
@@ -34,6 +34,10 @@ environment:
     secure: 36nPiNN0128SGPNp1hya5eIJUDBCcKV1okGuHTfwdvmgCQohx8i35hFmdjQl0WHf
 
   matrix:
+    - PY_VER: "2.7"
+      PYTHON_ARCH: "x86"
+    - PY_VER: "2.7"
+      PYTHON_ARCH: "x86_64"
     - PY_VER: "3.7"
       PYTHON_ARCH: "x86_64"
     - PY_VER: "3.7"

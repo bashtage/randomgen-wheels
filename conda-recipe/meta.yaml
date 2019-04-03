@@ -1,6 +1,6 @@
 {% set name = "randomgen" %}
-{% set version = "v1.16.2" %}
-{% set sha = "e8370006b4fe4479b1df9d68468da08c60e174751be9c90d78e06c36efb44cb6" %}
+{% set version = "v1.16.3" %}
+{% set sha = "a7e9fa405f41545f590f78ed088d1c997b28ba1800eb3b23e5aa63f082a1b297" %}
 package:
     name: {{ name|lower }}
     version:  {{ version }}
@@ -33,6 +33,6 @@ test:
 
 about:
     home: 'https://github.com/bashtage/randomgen'
-    license: NSCA/BSD
+    license: NSCA
     license_file: LICENSE.md
     summary: Replacement random number generator for NumPy
