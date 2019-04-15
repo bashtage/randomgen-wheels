@@ -1,6 +1,6 @@
 {% set name = "randomgen" %}
 {% set version = "v1.16.4" %}
-{% set sha = "a7e9fa405f41545f590f78ed088d1c997b28ba1800eb3b23e5aa63f082a1b297" %}
+{% set sha = "63af5165b1788dd2eecd690e419f815f10a276abd1f17e5fc20aa0f54a190f77" %}
 package:
     name: {{ name|lower }}
     version:  {{ version }}
