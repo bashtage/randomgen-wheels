@@ -11,11 +11,11 @@ matrix:
 
 environment:
   global:
-    BUILD_COMMIT: "v1.16.4" # "master"
+    BUILD_COMMIT: "v1.16.5" # "master"
     TESTPYPI_UPLOAD: "true" # "false"
     PYPI_UPLOAD: "false" # "true"
-    CONDA_BUILD: "false"
-    CONDA_UPLOAD: "false"
+    CONDA_BUILD: "true"
+    CONDA_UPLOAD: "true"
     PACKAGE_NAME: randomgen
     CONDA_NUMPY_VERSION: "1.16"
     MIN_NUMPY_VER: "1.15"
