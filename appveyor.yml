@@ -12,8 +12,8 @@ matrix:
 environment:
   global:
     BUILD_COMMIT: "v1.16.5" # "master"
-    TESTPYPI_UPLOAD: "true" # "false"
-    PYPI_UPLOAD: "false" # "true"
+    TESTPYPI_UPLOAD: "false" # "false"
+    PYPI_UPLOAD: "true" # "true"
     CONDA_BUILD: "true"
     CONDA_UPLOAD: "true"
     PACKAGE_NAME: randomgen
