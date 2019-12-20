@@ -14,6 +14,7 @@ environment:
     BUILD_COMMIT: "master" # "v1.16.5" # "master"
     TESTPYPI_UPLOAD: "false" # "false"
     PYPI_UPLOAD: "false" # "true"
+    REPO_DIR: randomgen
     PACKAGE_NAME: randomgen
     MIN_NUMPY_VER: "1.15"
     PIP_PACKAGES: "pytest"
@@ -49,16 +50,14 @@ install:
   - set "WHEELBUILDER_DIR=%cd%"
 
 build_script:
-  - cd randomgen
+  - cd %REPO_DIR%
   - git checkout %BUILD_COMMIT%
   - python setup.py bdist_wheel
-  - set "REPO_DIR=%cd%"
   - cd ..
 
 test_script:
   # install from wheel
   - pip install --pre --no-index --find-links %REPO_DIR%\dist\ %PACKAGE_NAME%
-
   - mkdir _for_testing
   - cd _for_testing
   - pytest --pyargs randomgen
