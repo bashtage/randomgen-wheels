@@ -14,10 +14,7 @@ environment:
     BUILD_COMMIT: "master" # "v1.16.5" # "master"
     TESTPYPI_UPLOAD: "false" # "false"
     PYPI_UPLOAD: "false" # "true"
-    CONDA_BUILD: "false"
-    CONDA_UPLOAD: "false"
     PACKAGE_NAME: randomgen
-    CONDA_NUMPY_VERSION: "1.16"
     MIN_NUMPY_VER: "1.15"
     PIP_PACKAGES: "pytest"
   TESTPYPI_USERNAME:
@@ -34,40 +31,21 @@ environment:
     secure: 36nPiNN0128SGPNp1hya5eIJUDBCcKV1okGuHTfwdvmgCQohx8i35hFmdjQl0WHf
 
   matrix:
-    - PY_VER: "2.7"
-      PYTHON_ARCH: "x86"
-    - PY_VER: "2.7"
-      PYTHON_ARCH: "x86_64"
-    - PY_VER: "3.7"
-      PYTHON_ARCH: "x86_64"
-    - PY_VER: "3.7"
-      PYTHON_ARCH: "x86"
-    - PY_VER: "3.6"
-      PYTHON_ARCH: "x86_64"
-    - PY_VER: "3.6"
-      PYTHON_ARCH: "x86"
-    - PY_VER: "3.5"
-      PYTHON_ARCH: "x86_64"
-      CONDA_NUMPY_VERSION: "1.15"
-    - PY_VER: "3.5"
-      PYTHON_ARCH: "x86"
-      CONDA_NUMPY_VERSION: "1.15"
+    - PYTHON: C:\Python35
+    - PYTHON: C:\Python35-x64
+    - PYTHON: C:\Python36
+    - PYTHON: C:\Python36-x64
+    - PYTHON: C:\Python37
+    - PYTHON: C:\Python37-x64
+    - PYTHON: C:\Python38
+    - PYTHON: C:\Python38-x64
 
 
 install:
   - git submodule update --init --recursive
-  - ps: Start-FileDownload "https://repo.continuum.io/miniconda/Miniconda3-latest-Windows-$env:PYTHON_ARCH.exe" C:\Miniconda.exe; echo "Finished downloading miniconda"
-  - cmd: C:\Miniconda.exe /S /D=C:\Py
-  - SET PATH=C:\Py;C:\Py\Library\mingw-w64\bin;C:\Py\Library\usr\bin;C:\Py\Library\bin;C:\Py\Scripts;C:\Py\bin;C:\Py\condabin;%PATH%
-  - echo "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64 > "C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\amd64/vcvars64.bat"
-  - conda config --set always_yes yes
-  - conda update conda --quiet
-  - conda install numpy>=MIN_NUMPY_VER
-  - call build-conda.bat
-  - conda create -n randomgen-build python=%PY_VER% numpy>=%MIN_NUMPY_VER% cython nose pytest wheel
-  - conda activate randomgen-build
+  - SET PATH=%PYTHON%;%PYTHON%\Scripts;%PATH%
   - python -m pip install -U pip
-  - pip install %PIP_PACKAGES% --upgrade
+  - pip install numpy>=%MIN_NUMPY_VER% cython nose pytest wheel
   - set "WHEELBUILDER_DIR=%cd%"
 
 build_script:
@@ -84,6 +62,10 @@ test_script:
   - mkdir _for_testing
   - cd _for_testing
   - pytest --pyargs randomgen
+
+artifacts:
+  # Archive the generated wheel package in the ci.appveyor.com build report.
+  - path: $(REPO_DIR)\dist\*
 
 on_success:
   - echo "Upload here"
