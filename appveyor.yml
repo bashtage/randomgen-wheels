@@ -44,6 +44,7 @@ environment:
 
 install:
   - git submodule update --init --recursive
+  - git config --global core.autocrlf false
   - SET PATH=%PYTHON%;%PYTHON%\Scripts;%PATH%
   - python -m pip install -U pip
   - pip install numpy>=%MIN_NUMPY_VER% cython nose pytest wheel
