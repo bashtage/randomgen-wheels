@@ -17,7 +17,7 @@ environment:
     REPO_DIR: randomgen
     PACKAGE_NAME: randomgen
     MIN_NUMPY_VER: "1.15"
-    PIP_PACKAGES: "pytest"
+    PIP_PACKAGES: "pytest pytest-xdist"
   TESTPYPI_USERNAME:
     secure: 9D67F9Bcy8PITwg1cezOgw==
   TESTPYPI_PASSWORD:
@@ -45,7 +45,7 @@ install:
   - git config --global core.autocrlf false
   - SET PATH=%PYTHON%;%PYTHON%\Scripts;%PATH%
   - python -m pip install -U pip
-  - pip install numpy>=%MIN_NUMPY_VER% cython nose pytest wheel
+  - pip install numpy>=%MIN_NUMPY_VER% cython nose pytest pytest-xdist wheel
   - set "WHEELBUILDER_DIR=%cd%"
 
 build_script:
@@ -59,7 +59,7 @@ test_script:
   - pip install --pre --no-index --find-links %REPO_DIR%\dist\ %PACKAGE_NAME%
   - mkdir _for_testing
   - cd _for_testing
-  - pytest --pyargs randomgen
+  - python -c "import randomgen; randomgen.test(extra_args=['--skip-slow', '-n=2'])"
 
 artifacts:
   # Archive the generated wheel package in the ci.appveyor.com build report.

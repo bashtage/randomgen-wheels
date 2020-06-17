@@ -11,7 +11,7 @@ env:
       - PLAT=x86_64
       - UNICODE_WIDTH=32
       - BUILD_DEPENDS="Cython numpy"
-      - TEST_DEPENDS="numpy pytest nose"
+      - TEST_DEPENDS="numpy pytest pytest-xdist nose"
       - CONDA_NUMPY_VERSION=1.16
 
 language: python
