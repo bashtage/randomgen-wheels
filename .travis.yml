@@ -1,9 +1,9 @@
 env:
   global:
       # Set these values
-      - BUILD_COMMIT="v1.18.1" # "master"
+      - BUILD_COMMIT="master" # "v1.18.1"
       - TESTPYPI_UPLOAD=false # false
-      - PYPI_UPLOAD=true # true
+      - PYPI_UPLOAD=false # true
       - CONDA_BUILD=false
       - CONDA_UPLOAD=false
       # These values should not usually change
@@ -24,14 +24,6 @@ matrix:
   include:
     - os: linux
       env:
-        - MB_PYTHON_VERSION=3.5
-        - CONDA_NUMPY_VERSION=1.15
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.5
-        - PLAT=i686
-    - os: linux
-      env:
         - MB_PYTHON_VERSION=3.6
     - os: linux
       env:
@@ -51,11 +43,6 @@ matrix:
       env:
         - MB_PYTHON_VERSION=3.8
         - PLAT=i686
-    - os: osx
-      language: generic
-      env:
-        - MB_PYTHON_VERSION=3.5
-        - CONDA_NUMPY_VERSION=1.15
     - os: osx
       language: generic
       env:

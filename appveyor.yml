@@ -11,9 +11,9 @@ matrix:
 
 environment:
   global:
-    BUILD_COMMIT: "v1.18.1" # "master"
+    BUILD_COMMIT: "master" # "v1.18.1"
     TESTPYPI_UPLOAD: "false" # "false"
-    PYPI_UPLOAD: "true" # "true"
+    PYPI_UPLOAD: "false" # "true"
     REPO_DIR: randomgen
     PACKAGE_NAME: randomgen
     MIN_NUMPY_VER: "1.15"
@@ -32,8 +32,6 @@ environment:
     secure: 36nPiNN0128SGPNp1hya5eIJUDBCcKV1okGuHTfwdvmgCQohx8i35hFmdjQl0WHf
 
   matrix:
-    - PYTHON: C:\Python35
-    - PYTHON: C:\Python35-x64
     - PYTHON: C:\Python36
     - PYTHON: C:\Python36-x64
     - PYTHON: C:\Python37
