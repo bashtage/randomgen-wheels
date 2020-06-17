@@ -18,6 +18,9 @@ function pip_opts {
 
 function run_tests {
     # Runs tests on installed distribution from an empty directory
-    python --version
-    pytest --pyargs randomgen.tests
+    export PYTHONHASHSEED=$(python -c 'import random; print(random.randint(1, 4294967295))')
+    echo $PATH
+    which -a python
+    pip list
+    python -c 'import randomgen; randomgen.test(extra_args=["--skip-slow", "-n=2"])'
 }
