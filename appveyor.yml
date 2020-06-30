@@ -11,7 +11,7 @@ matrix:
 
 environment:
   global:
-    BUILD_COMMIT: "v1.19.0" # "master"
+    BUILD_COMMIT: "v1.19.1" # "master"
     TESTPYPI_UPLOAD: "false" # "false"
     PYPI_UPLOAD: "true" # "true"
     REPO_DIR: randomgen
