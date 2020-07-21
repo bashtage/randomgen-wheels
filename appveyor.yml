@@ -11,7 +11,7 @@ matrix:
 
 environment:
   global:
-    BUILD_COMMIT: "v1.19.2" # "master"
+    BUILD_COMMIT: "v1.19.3" # "master"
     TESTPYPI_UPLOAD: "false" # "false"
     PYPI_UPLOAD: "true" # "true"
     REPO_DIR: randomgen
@@ -26,10 +26,6 @@ environment:
     secure: 9D67F9Bcy8PITwg1cezOgw==
   PYPI_PASSWORD:
     secure: ufGrse+xSx3blI6bh9bnSg==
-  ANACONDA_USERNAME:
-    secure: 9D67F9Bcy8PITwg1cezOgw==
-  ANACONDA_TOKEN:
-    secure: 36nPiNN0128SGPNp1hya5eIJUDBCcKV1okGuHTfwdvmgCQohx8i35hFmdjQl0WHf
 
   matrix:
     - PYTHON: C:\Python36
