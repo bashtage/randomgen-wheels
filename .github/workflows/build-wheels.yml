@@ -25,8 +25,8 @@ jobs:
     env:
       REPO_DIR: randomgen
       PKG_NAME: randomgen
-      BUILD_COMMIT: "main" # "v1.20.0"
-      PYPI_UPLOAD: false  # true or false
+      BUILD_COMMIT: "v1.20.0"
+      PYPI_UPLOAD: true  # true or false
       TESTPYPI_UPLOAD: false
       UNICODE_WIDTH: 32
       MB_PYTHON_VERSION: ${{ matrix.python-version }}

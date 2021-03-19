@@ -11,9 +11,9 @@ matrix:
 
 environment:
   global:
-    BUILD_COMMIT: "main" # "v1.20.0"
-    TESTPYPI_UPLOAD: "true" # "false"
-    PYPI_UPLOAD: "false" # "true"
+    BUILD_COMMIT: "v1.20.0"
+    TESTPYPI_UPLOAD: "false" # "false"
+    PYPI_UPLOAD: "true" # "true"
     REPO_DIR: randomgen
     PACKAGE_NAME: randomgen
     MIN_NUMPY_VER: "1.16"
