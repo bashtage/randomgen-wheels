@@ -25,7 +25,7 @@ jobs:
     env:
       REPO_DIR: randomgen
       PKG_NAME: randomgen
-      BUILD_COMMIT: "v1.20.0"
+      BUILD_COMMIT: "v1.20.1"
       PYPI_UPLOAD: true  # true or false
       TESTPYPI_UPLOAD: false
       UNICODE_WIDTH: 32
