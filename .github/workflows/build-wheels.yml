@@ -28,7 +28,7 @@ jobs:
       # No support for pypy, musl, Win32 for 3.10+
       CIBW_SKIP: "pp* *-musllinux_* cp310-win32"
       CIBW_TEST_REQUIRES: pytest pytest-xdist
-      CIBW_TEST_COMMAND: python -c "import linearmodels; linearmodels.test(['-n','2','--skip-slow'])"
+      CIBW_TEST_COMMAND: python -c "import randomgen; randomgen.test(['-n','2','--skip-slow'])"
       # Avoid testing on emulated architectures
       CIBW_TEST_SKIP: "*-*linux_{aarch64,ppc64le,s390x}"
       CIBW_REPAIR_WHEEL_COMMAND_LINUX: 'auditwheel repair --strip -w {dest_dir} {wheel}'
