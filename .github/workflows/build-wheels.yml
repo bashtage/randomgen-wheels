@@ -24,9 +24,9 @@ jobs:
       TESTPYPI_UPLOAD: false
       CIBW_BUILD: ${{ matrix.python }}-*
       CIBW_ARCHS_LINUX: "x86_64 aarch64"
-      CIBW_ARCHS_MACOS: "x86_64 arm64"
+      CIBW_ARCHS_MACOS: "x86_64" # arm64 is not supported currently
       # No support for pypy, musl, Win32 for 3.10+
-      CIBW_SKIP: "pp* *-musllinux_* cp310-win32"
+      CIBW_SKIP: "pp* *-musllinux_* *-win32" # No win32 support due ot segfaults
       CIBW_TEST_REQUIRES: pytest pytest-xdist
       CIBW_TEST_COMMAND: python -c "import randomgen; randomgen.test(['-n','2','--skip-slow'])"
       # Avoid testing on emulated architectures
