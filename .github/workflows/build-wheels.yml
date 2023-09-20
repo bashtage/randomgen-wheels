@@ -65,7 +65,6 @@ jobs:
           git submodule foreach git checkout ${{ env.BUILD_COMMIT }}
 
       - name: Build wheels
-        if: matrix.os == 'macos-latest'
         run: |
           if [[ "${{ matrix.os }}" == "macOS-latest" ]]; then
             echo "Build wheels OSX"
