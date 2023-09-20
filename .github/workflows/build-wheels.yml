@@ -74,7 +74,7 @@ jobs:
 
             # Build for ARM
             export CIBW_ARCHS_MACOS="arm64"
-            export CIBW_ENVIRONMENT="RANDOMGEN_NO_SSE=1"
+            export CIBW_ENVIRONMENT="RANDOMGEN_NO_SSE2=1"
             echo "CIBW archs macos:" $CIBW_ARCHS_MACOS
             echo "CIBW Environment" $CIBW_ENVIRONMENT
             python -m cibuildwheel --output-dir wheelhouse randomgen
