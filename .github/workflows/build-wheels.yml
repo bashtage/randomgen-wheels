@@ -77,7 +77,7 @@ jobs:
             export CIBW_ENVIRONMENT="RANDOMGEN_NO_SSE=1"
             echo "CIBW archs macos:" $CIBW_ARCHS_MACOS
             echo "CIBW Environment" $CIBW_ENVIRONMENT
-            python -m cibuildwheel --output-dir wheelhouse --platform macos-10.14-x86_64 randomgen
+            python -m cibuildwheel --output-dir wheelhouse --platform randomgen
           else
             echo "Build wheels Linux/Windows" 
             python -m cibuildwheel --output-dir wheelhouse randomgen
