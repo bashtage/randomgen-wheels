@@ -25,7 +25,7 @@ jobs:
       CIBW_BUILD: ${{ matrix.python }}-*
       CIBW_ARCHS_LINUX: "x86_64 aarch64"
       # No support for pypy, musl, Win32 for 3.10+
-      CIBW_SKIP: "pp* *-musllinux_* *-win32" # No win32 support due ot segfaults
+      CIBW_SKIP: "pp* *-win32 cp38-musllinux* cp39-musllinux* *musllinux_aarch64*" # No win32 support due ot segfaults
       CIBW_TEST_REQUIRES: pytest pytest-xdist
       CIBW_TEST_COMMAND: python -c "import randomgen; randomgen.test(['--skip-slow','-n','2'])"
       # Avoid testing on emulated architectures
