@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python: ["cp39", "cp310", "cp311", "cp312"]
+        python: ["cp39", "cp310", "cp311", "cp312", "cp313"]
         os: [ubuntu-latest, windows-latest, macos-latest, macos-13]
     env:
       BUILD_COMMIT: "v2.0.1"  # main or a specific version, e.g., v1.23.0
@@ -48,6 +48,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
+          allow-prereleases: true
 
       - name: Set up QEMU
         if: runner.os == 'Linux'
