@@ -24,7 +24,7 @@ jobs:
       TESTPYPI_UPLOAD: false
       CIBW_BUILD: ${{ matrix.python }}-*
       CIBW_ARCHS_LINUX: "x86_64 aarch64"
-      CIBW_ARCHS_MACOS: auto
+      CIBW_ARCHS_MACOS: native
       CIBW_ARCHS_WINDOWS: AMD64
       # No support for pypy, musl, Win32 for 3.10+
       # No win32 support due to segfaults
