@@ -60,10 +60,9 @@ jobs:
           CIBW_TEST_REQUIRES: pytest
           PYTHON_VALUE: '${{ matrix.python }}'
 
-      - name: Show whels
-        run: |
-          echo "Show wheelhouse contents"
-          ls ./wheelhouse
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.x'
 
       - name: Upload wheels
         if: always()
