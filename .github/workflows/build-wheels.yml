@@ -65,7 +65,9 @@ jobs:
           python-version: '3.x'
 
       - name: Upload wheels
-        if: always()
+        # Upload only after a merge to main (a push), never from a pull request.
+        # twine-upload.sh also skips wheels whose version is not a release version.
+        if: ${{ always() && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         run: source twine-upload.sh
         env:
           TESTPYPI_TOKEN: ${{ secrets.TESTPYPI_TOKEN }}
