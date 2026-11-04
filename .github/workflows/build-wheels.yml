@@ -28,7 +28,7 @@ jobs:
       CIBW_ARCHS_WINDOWS: AMD64
       # No support for pypy, musl, Win32 for 3.10+
       # No win32 support due to segfaults
-      CIBW_SKIP: "pp* cp39-musllinux* *musllinux_aarch64*"
+      CIBW_SKIP: "*musllinux_aarch64*"
       CIBW_TEST_COMMAND: python -c "import randomgen; randomgen.test(['-m','(not slow)'])"
       # Avoid testing on emulated architectures
       CIBW_TEST_SKIP: "*-*linux_{aarch64,ppc64le,s390x} *-win32"
