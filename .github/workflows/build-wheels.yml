@@ -16,16 +16,21 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest, macos-15-intel]
+        os: [ubuntu-latest, windows-latest, windows-11-arm, macos-latest, macos-15-intel]
         python: [cp310, cp311, cp312, cp313, cp314, cp314t, cp315, cp315t]
+        exclude:
+          # Python 3.10 has no Windows ARM64 build, and NumPy has no wheel for it
+          - os: windows-11-arm
+            python: cp310
     env:
-      BUILD_COMMIT: "v2.5.0"  # main or a specific version, e.g., v1.23.0
+      BUILD_COMMIT: "v2.5.1"  # main or a specific version, e.g., v1.23.0
       PYPI_UPLOAD: true  # true or false
       TESTPYPI_UPLOAD: false
       CIBW_BUILD: ${{ matrix.python }}-*
       CIBW_ARCHS_LINUX: "x86_64 aarch64"
       CIBW_ARCHS_MACOS: native
-      CIBW_ARCHS_WINDOWS: AMD64
+      # Native builds: AMD64 on windows-latest, ARM64 on windows-11-arm
+      CIBW_ARCHS_WINDOWS: ${{ matrix.os == 'windows-11-arm' && 'ARM64' || 'AMD64' }}
       # No support for pypy, musl, Win32 for 3.10+
       # No win32 support due to segfaults
       CIBW_SKIP: "*musllinux_aarch64*"
